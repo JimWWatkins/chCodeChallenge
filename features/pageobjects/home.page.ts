@@ -10,7 +10,7 @@ class HomePage extends Page {
     }
 
     public get chatBotMessageBodys() {return $$('.message__body')
-}
+    }
 
     public get chatBotIFrame() {return $('#sntch_iframe')
     }
@@ -27,6 +27,7 @@ class HomePage extends Page {
 
     // Methods
     public async openBot() {
+        // Pause and refresh due to Global Websocket remaining open between tests
         await browser.pause(2000);
         await browser.refresh();
         await this.openBotButton.waitForClickable({ timeout: 10000, interval: 500, timeoutMsg:'Option not clickable by 10s' });
@@ -80,6 +81,7 @@ class HomePage extends Page {
     }
 
     public async confirmOptions(option:string) {
+        // Pause used for stability of test as element is located before all similar elements are scrolled into view
         await browser.pause(2500)
         await $('.message__suggested-btn').waitForClickable({ timeout: 10000, timeoutMsg:'Option not clickable by 10s' });
         const options = await this.snatchBotOptions;
@@ -93,6 +95,7 @@ class HomePage extends Page {
     }
 
     public async selectOption(option:string) {
+        // Pause used for stability of test as element is located before all similar elements are scrolled into view
         await browser.pause(2000)
         await $('.message__suggested-btn').waitForClickable({ timeout: 10000, timeoutMsg:'Option not clickable by 10s' });
         const options = await this.snatchBotOptions;

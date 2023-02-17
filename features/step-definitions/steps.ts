@@ -1,5 +1,4 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
-
 import HomePage from '../pageobjects/home.page.js';
 
 const pages = {
